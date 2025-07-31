@@ -1,0 +1,106 @@
+<!-- page2.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Moments</title>
+  <style>
+    body {
+      background: #b35c5c;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card-container {
+      position: relative;
+      width: 320px;
+      height: 300px;
+      perspective: 1000px;
+    }
+
+    .card {
+      position: absolute;
+      width: 200px;
+      height: 250px;
+      background: #eee;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      text-align: center;
+      padding: 10px;
+      transition: transform 0.4s ease, z-index 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .card p {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .card:nth-child(1) { transform: rotate(-20deg) translateX(-100px); z-index: 1; }
+    .card:nth-child(2) { transform: rotate(-10deg) translateX(-50px); z-index: 2; }
+    .card:nth-child(3) { transform: rotate(0deg); z-index: 3; }
+    .card:nth-child(4) { transform: rotate(10deg) translateX(50px); z-index: 2; }
+    .card:nth-child(5) { transform: rotate(20deg) translateX(100px); z-index: 1; }
+
+    .card.active {
+      transform: scale(1.1) rotate(0deg) translateY(-10px);
+      z-index: 99 !important;
+    }
+
+    .nav {
+      margin-top: 3em;
+    }
+
+    .nav button {
+      background: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 1em;
+      margin: 0 10px;
+      cursor: pointer;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .nav button:hover {
+      background: #ffe0e8;
+    }
+  </style>
+</head>
+<body>
+  <div class="card-container">
+    <div class="card"><img src="https://via.placeholder.com/200x150"><p>Moment 1</p></div>
+    <div class="card"><img src="https://via.placeholder.com/200x150"><p>Moment 2</p></div>
+    <div class="card"><img src="https://via.placeholder.com/200x150"><p>Moment 3</p></div>
+    <div class="card"><img src="https://via.placeholder.com/200x150"><p>Moment 4</p></div>
+    <div class="card"><img src="https://via.placeholder.com/200x150"><p>Moment 5</p></div>
+  </div>
+
+  <div class="nav">
+    <button onclick="window.location.href='gift.html'">Back</button>
+    <button onclick="window.location.href='flower.html'">Next</button>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        cards.forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>

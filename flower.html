@@ -1,0 +1,76 @@
+<!-- page3.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Bloom</title>
+  <style>
+    body {
+      background: #ffe6f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+    }
+
+    .flower {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      animation: pulse 2s infinite;
+    }
+
+    .petal {
+      width: 100px;
+      height: 100px;
+      background: #ff69b4;
+      border-radius: 50%;
+      position: absolute;
+      opacity: 0.8;
+      transform-origin: bottom right;
+    }
+
+    .petal:nth-child(1) { transform: rotate(0deg) translateY(-50px); }
+    .petal:nth-child(2) { transform: rotate(72deg) translateY(-50px); }
+    .petal:nth-child(3) { transform: rotate(144deg) translateY(-50px); }
+    .petal:nth-child(4) { transform: rotate(216deg) translateY(-50px); }
+    .petal:nth-child(5) { transform: rotate(288deg) translateY(-50px); }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .center {
+      width: 30px;
+      height: 30px;
+      background: yellow;
+      border-radius: 50%;
+      position: absolute;
+      top: 35px;
+      left: 35px;
+    }
+
+    p {
+      margin-top: 3em;
+      font-size: 1.3em;
+      color: #d63384;
+    }
+  </style>
+</head>
+<body>
+  <div class="flower">
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="center"></div>
+  </div>
+  <p>Just like this flower, my love for you keeps blooming 🌸💖</p>
+</body>
+</html>
