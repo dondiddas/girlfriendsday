@@ -1,4 +1,3 @@
-<!-- page2.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,14 +6,16 @@
   <title>Our Moments</title>
   <style>
     body {
-      background: #b35c5c;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+  background: linear-gradient(to bottom right, #ffd1dc, #fff0f5); /* hot pink to light pink */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
 
     .card-container {
       position: relative;
@@ -25,27 +26,49 @@
 
     .card {
       position: absolute;
-      width: 200px;
-      height: 250px;
-      background: #eee;
-      border-radius: 10px;
+      width: 80vw; /* Responsive width */
+      max-width: 280px;
+      height: 340px;
+      background: #fefefe;
+      border-radius: 12px;
       border: 2px solid #ccc;
       text-align: center;
       padding: 10px;
       transition: transform 0.4s ease, z-index 0.3s ease;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .card img {
       width: 100%;
-      height: 150px;
+      height: 200px;
       object-fit: cover;
       border-radius: 6px;
+      object-position: center;
     }
 
     .card p {
-      margin-top: 10px;
+      margin: 10px 0 0;
       font-weight: bold;
+    }
+
+    .emoji-row {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 5px;
+    }
+
+    .emoji-btn {
+      cursor: pointer;
+      font-size: 40px;
+      transition: transform 0.2s ease;
+    }
+
+    .emoji-btn:hover {
+      transform: scale(1.3);
     }
 
     .card:nth-child(1) { transform: rotate(-20deg) translateX(-100px); z-index: 1; }
@@ -59,8 +82,58 @@
       z-index: 99 !important;
     }
 
+    .floating-group {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+      display: none;
+    }
+
+    .float-img {
+      position: absolute;
+      width: 300px;
+      opacity: 0;
+      animation: softFloat 15s ease-in-out forwards;
+    }
+
+    @keyframes softFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) rotate(360deg);
+    opacity: 0;
+  }
+}
+ 
+
+    .floating-emoji {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-50px); }
+    }
+
     .nav {
-      margin-top: 3em;
+      margin-top: 10em;
+      position: relative;
+      z-index: 10;
     }
 
     .nav button {
@@ -81,11 +154,79 @@
 </head>
 <body>
   <div class="card-container">
-    <div class="card"><img src="images/silly.jpg"><p>I do love all of your silly pics mwehehehe</p></div>
-    <div class="card"><img src="images/eyelashes.jpg"><p>Pak! what beatiful eyelashes. 10/10</p></div>
-    <div class="card"><img src="images/disgust.jpg"><p>reaction nimo everytime na naa koy iingon na weird stuffs</p></div>
-    <div class="card"><img src="images/1169b876-d038-41fd-b562-b9e1cead2aea.jpg"><p>kini, sleeping beauty </p></div>
-    <div class="card"><img src="images/couplepic.jpg"><p>Couple pic nato duha mwhehehehe</p></div>
+    <div class="card" data-emojis="😆😂🥴">
+      <img src="images/silly.jpg" style="object-position: top;">
+      <p>I do love all of your silly pics mwehehehe</p>
+      <div class="emoji-row">
+        <span class="emoji-btn">😆</span>
+        <span class="emoji-btn">😂</span>
+        <span class="emoji-btn">🥴</span>
+      </div>
+    </div>
+
+    <div class="card" data-emojis="😍👁️✨">
+      <img src="images/eyelashes.jpg" style="object-position: top;">
+      <p>Pak! what beautiful eyelashes. 10/10</p>
+      <div class="emoji-row">
+        <span class="emoji-btn">😍</span>
+        <span class="emoji-btn">👁️</span>
+        <span class="emoji-btn">✨</span>
+      </div>
+    </div>
+
+    <div class="card" data-emojis="🤢😆😅">
+      <img src="images/disgust.jpg" style="object-position: center;">
+      <p>reaction nimo everytime na naa koy iingon na weird stuffs</p>
+      <div class="emoji-row">
+        <span class="emoji-btn">🤢</span>
+        <span class="emoji-btn">😆</span>
+        <span class="emoji-btn">😅</span>
+      </div>
+    </div>
+
+    <div class="card" data-emojis="💤😴🧚">
+      <img src="images/1169b876-d038-41fd-b562-b9e1cead2aea.jpg">
+      <p>rag maoy pagmata pero ganda dyapon</p>
+      <div class="emoji-row">
+        <span class="emoji-btn">💤</span>
+        <span class="emoji-btn">😴</span>
+        <span class="emoji-btn">🧚</span>
+      </div>
+    </div>
+
+    <div class="card" data-emojis="💑📸❤️">
+      <img src="images/couplepic.jpg">
+      <p>Couple pic nato mwhehehehe</p>
+      <div class="emoji-row">
+        <span class="emoji-btn">💑</span>
+        <span class="emoji-btn">📸</span>
+        <span class="emoji-btn">❤️</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating image groups -->
+  <div class="floating-group" id="float-1">
+    <img src="images/silly (1).jpg" class="float-img" />
+    <img src="images/silly (2).jpg" class="float-img" />
+    <img src="images/silly (4).jpg" class="float-img" />
+  </div>
+  <div class="floating-group" id="float-2">
+    <img src="images/eep.jpg" class="float-img" />
+    <img src="images/eep (2).jpg" class="float-img" />
+    <img src="images/eyelashes.jpg" class="float-img" />
+  </div>
+  <div class="floating-group" id="float-3">
+    <img src="images/flower1.png" class="float-img" />
+    <img src="images/flower2.png" class="float-img" />
+  </div>
+  <div class="floating-group" id="float-4">
+    <img src="images/sleep1.png" class="float-img" />
+    <img src="images/moon1.png" class="float-img" />
+  </div>
+  <div class="floating-group" id="float-5">
+    <img src="images/love1.png" class="float-img" />
+    <img src="images/hearts2.png" class="float-img" />
   </div>
 
   <div class="nav">
@@ -95,10 +236,68 @@
 
   <script>
     const cards = document.querySelectorAll(".card");
-    cards.forEach(card => {
-      card.addEventListener("click", () => {
-        cards.forEach(c => c.classList.remove("active"));
-        card.classList.add("active");
+const emojiButtons = document.querySelectorAll(".emoji-btn");
+let resetTimeout;
+
+cards.forEach((card, index) => {
+  card.addEventListener("click", () => {
+    cards.forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+
+    document.querySelectorAll(".floating-group").forEach(group => {
+      group.style.display = "none";
+
+      const imgs = group.querySelectorAll("img");
+      imgs.forEach(img => {
+        const x = Math.random() * (window.innerWidth - 50);
+        const y = window.innerHeight - 100 + Math.random() * 30;
+        img.style.left = `${x}px`;
+        img.style.top = `${y}px`;
+        img.style.animation = "none"; // reset animation
+        img.offsetHeight; // force reflow
+        img.style.animation = "softFloat 6s ease-in-out forwards";
+      });
+    });
+
+    const currentFloat = document.getElementById(`float-${index + 1}`);
+    if (currentFloat) currentFloat.style.display = "block";
+
+    clearTimeout(resetTimeout);
+    resetTimeout = setTimeout(() => {
+      cards.forEach(c => c.classList.remove("active"));
+      document.querySelectorAll(".floating-group").forEach(g => g.style.display = "none");
+    }, 6000); // Hide after 3 seconds
+  });
+});
+
+// FIXED: This block is now outside of the card loop
+emojiButtons.forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const emoji = btn.textContent;
+    const rect = btn.getBoundingClientRect();
+    const floatEmoji = document.createElement("div");
+    floatEmoji.className = "floating-emoji";
+    floatEmoji.style.left = rect.left + "px";
+    floatEmoji.style.top = rect.top + "px";
+    floatEmoji.textContent = emoji;
+    document.body.appendChild(floatEmoji);
+    setTimeout(() => floatEmoji.remove(), 2000);
+  });
+});
+
+    emojiButtons.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const emoji = btn.textContent;
+        const rect = btn.getBoundingClientRect();
+        const floatEmoji = document.createElement("div");
+        floatEmoji.className = "floating-emoji";
+        floatEmoji.style.left = rect.left + "px";
+        floatEmoji.style.top = rect.top + "px";
+        floatEmoji.textContent = emoji;
+        document.body.appendChild(floatEmoji);
+        setTimeout(() => floatEmoji.remove(), 2000);
       });
     });
   </script>
