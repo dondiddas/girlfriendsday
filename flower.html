@@ -1,76 +1,127 @@
-<!-- page3.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Bloom</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Floating Tulips</title>
   <style>
     body {
-      background: #ffe6f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #fff0f5;
       height: 100vh;
-      font-family: 'Comic Sans MS', cursive;
-      text-align: center;
+      position: relative;
+    }
+
+    .tulip {
+      position: absolute;
+      animation: floatUp 12s linear infinite;
+      opacity: 0.9;
     }
 
     .flower {
-      position: relative;
-      width: 100px;
-      height: 100px;
-      animation: pulse 2s infinite;
-    }
-
-    .petal {
-      width: 100px;
-      height: 100px;
-      background: #ff69b4;
-      border-radius: 50%;
-      position: absolute;
-      opacity: 0.8;
-      transform-origin: bottom right;
-    }
-
-    .petal:nth-child(1) { transform: rotate(0deg) translateY(-50px); }
-    .petal:nth-child(2) { transform: rotate(72deg) translateY(-50px); }
-    .petal:nth-child(3) { transform: rotate(144deg) translateY(-50px); }
-    .petal:nth-child(4) { transform: rotate(216deg) translateY(-50px); }
-    .petal:nth-child(5) { transform: rotate(288deg) translateY(-50px); }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
-    .center {
-      width: 30px;
+      width: 20px;
       height: 30px;
-      background: yellow;
-      border-radius: 50%;
-      position: absolute;
-      top: 35px;
-      left: 35px;
+      background: pink;
+      border-radius: 50% 50% 0 0;
+      position: relative;
+      z-index: 2;
     }
 
-    p {
-      margin-top: 3em;
-      font-size: 1.3em;
-      color: #d63384;
+    .flower::before,
+    .flower::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 30px;
+      background: inherit;
+      border-radius: 50% 50% 0 0;
+    }
+
+    .flower::before {
+      transform: rotate(30deg);
+      left: -10px;
+    }
+
+    .flower::after {
+      transform: rotate(-30deg);
+      right: -10px;
+    }
+
+    .stem {
+      width: 4px;
+      height: 40px;
+      background: green;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .leaf {
+      width: 10px;
+      height: 20px;
+      background: #228B22;
+      position: absolute;
+      border-radius: 50% 50% 0 0;
+    }
+
+    .leaf.left {
+      transform: rotate(-45deg);
+      left: -10px;
+      top: 10px;
+    }
+
+    .leaf.right {
+      transform: rotate(45deg);
+      right: -10px;
+      top: 10px;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.1);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="flower">
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="petal"></div>
-    <div class="center"></div>
-  </div>
-  <p>Just like this flower, my love for you keeps blooming 🌸💖</p>
+
+<script>
+  const colors = ['#ff69b4', '#ffb6c1', '#ffc0cb', '#dda0dd', '#f08080', '#ff7f50', '#ffa07a', '#db7093'];
+  for (let i = 0; i < 25; i++) {
+    const tulip = document.createElement('div');
+    tulip.classList.add('tulip');
+    tulip.style.left = `${Math.random() * 100}%`;
+    tulip.style.animationDelay = `${Math.random() * 10}s`;
+
+    const flower = document.createElement('div');
+    flower.classList.add('flower');
+    flower.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+    const stem = document.createElement('div');
+    stem.classList.add('stem');
+
+    const leaf1 = document.createElement('div');
+    leaf1.classList.add('leaf', 'left');
+    const leaf2 = document.createElement('div');
+    leaf2.classList.add('leaf', 'right');
+
+    stem.appendChild(leaf1);
+    stem.appendChild(leaf2);
+    tulip.appendChild(flower);
+    tulip.appendChild(stem);
+    document.body.appendChild(tulip);
+  }
+</script>
+
 </body>
 </html>
