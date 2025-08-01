@@ -8,16 +8,35 @@
     body {
       margin: 0;
       padding: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to bottom, #ffe4e1, #ffc1cc);
       overflow: hidden;
-      background: #fff0f5;
-      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: black;
       position: relative;
+    }
+
+    .letter {
+      max-width: 700px;
+      text-align: center;
+      z-index: 10;
+      padding : 30px;
+      background: transparent;
+    }
+
+    .letter h2 {
+      margin-top: 0;
+      color: #ff69b4;
     }
 
     .tulip {
       position: absolute;
       animation: floatUp 12s linear infinite;
       opacity: 0.9;
+      z-index: 1;
     }
 
     .flower {
@@ -95,33 +114,53 @@
 </head>
 <body>
 
-<script>
-  const colors = ['#ff69b4', '#ffb6c1', '#ffc0cb', '#dda0dd', '#f08080', '#ff7f50', '#ffa07a', '#db7093'];
-  for (let i = 0; i < 25; i++) {
-    const tulip = document.createElement('div');
-    tulip.classList.add('tulip');
-    tulip.style.left = `${Math.random() * 100}%`;
-    tulip.style.animationDelay = `${Math.random() * 10}s`;
+  <div class="letter">
+    <h2>To my favorite person 💗</h2>
+    <p>
+      Hello Palangging ko!<br><br>
+      Still you're my favorite hooman and I never get tired of you — you always get stuck in my head.<br><br>
+      Even on days when I’m tired, busy, or just being a sleepy potato, thinking about you makes everything feel lighter 💗<br><br>
+      Sometimes I wonder how I got so lucky like, did I save a kingdom in my past life or something? 😌<br><br>
+      Because wow, I have YOU. The sweetest, silliest, cutest, moodiest hehe, and prettiest human in existence.<br><br>
+      Your voice? My favorite sound, labaw nag na annoy taka nyahahahaha.<br>
+      Your laugh? Instant mood boost.<br>
+      Your face? UGH STOP, so beautiful it’s unfair 😤<br><br>
+      And yes, even when you bully me or grab my bewbies, I still love you. That’s commitment 😤💖<br><br>
+      We’ve shared so many memories already, but I still get excited thinking about all the silly adventures and quiet moments waiting for us.<br><br>
+      You’re not just my girlfriend, you’re my best friend, my partner in crime, my baby, my peace, and my chaos (in the best way).<br><br>
+      So, happy Girlfriend Day, Bamby.<br>
+      Thanks for being mine. Always.<br><br>
+      Let’s keep choosing each other, okay? Even on days we feel like potatoes. Also… ayaw nako awaya ha 😗💕
+    </p>
+  </div>
 
-    const flower = document.createElement('div');
-    flower.classList.add('flower');
-    flower.style.background = colors[Math.floor(Math.random() * colors.length)];
+  <script>
+    const colors = ['#ff69b4', '#ffb6c1', '#ffc0cb', '#dda0dd', '#f08080', '#ff7f50', '#ffa07a', '#db7093'];
+    for (let i = 0; i < 25; i++) {
+      const tulip = document.createElement('div');
+      tulip.classList.add('tulip');
+      tulip.style.left = `${Math.random() * 100}%`;
+      tulip.style.animationDelay = `${Math.random() * 10}s`;
 
-    const stem = document.createElement('div');
-    stem.classList.add('stem');
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.style.background = colors[Math.floor(Math.random() * colors.length)];
 
-    const leaf1 = document.createElement('div');
-    leaf1.classList.add('leaf', 'left');
-    const leaf2 = document.createElement('div');
-    leaf2.classList.add('leaf', 'right');
+      const stem = document.createElement('div');
+      stem.classList.add('stem');
 
-    stem.appendChild(leaf1);
-    stem.appendChild(leaf2);
-    tulip.appendChild(flower);
-    tulip.appendChild(stem);
-    document.body.appendChild(tulip);
-  }
-</script>
+      const leaf1 = document.createElement('div');
+      leaf1.classList.add('leaf', 'left');
+      const leaf2 = document.createElement('div');
+      leaf2.classList.add('leaf', 'right');
+
+      stem.appendChild(leaf1);
+      stem.appendChild(leaf2);
+      tulip.appendChild(flower);
+      tulip.appendChild(stem);
+      document.body.appendChild(tulip);
+    }
+  </script>
 
 </body>
 </html>

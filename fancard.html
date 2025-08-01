@@ -150,9 +150,76 @@
     .nav button:hover {
       background: #ffe0e8;
     }
+
+   .tulip {
+      position: fixed;
+      bottom: -60px;
+      animation: float 12s linear infinite;
+      z-index: 0;
+    }
+
+    .tulip-head {
+      width: 20px;
+      height: 25px;
+      border-radius: 50% 50% 0 0;
+      background: pink;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .stem {
+      width: 2px;
+      height: 40px;
+      background: green;
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .leaf {
+      width: 10px;
+      height: 10px;
+      background: green;
+      position: absolute;
+      top: 35px;
+      border-radius: 50%;
+    }
+
+    .leaf.left {
+      left: 40%;
+      transform: rotate(-30deg);
+    }
+
+    .leaf.right {
+      right: 40%;
+      transform: rotate(30deg);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
+   <div class="tulip" style="left: 10%; animation-delay: 0s;"><div class="tulip-head" style="background: pink;"></div><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+  <div class="tulip" style="left: 20%; animation-delay: 2s;"><div class="tulip-head" style="background: red;"></div><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+  <div class="tulip" style="left: 30%; animation-delay: 4s;"><div class="tulip-head" style="background: orange;"></div><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+  <div class="tulip" style="left: 40%; animation-delay: 1s;"><div class="tulip-head" style="background: violet;"></div><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+  <div class="tulip" style="left: 50%; animation-delay: 3s;"><div class="tulip-head" style="background: yellow;"></div><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+  <div class="tulip" style="left: 60%; animation-delay: 5s;"><div class="tulip-head" style="background: hotpink;"></div><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+  <div class="tulip" style="left: 70%; animation-delay: 1.5s;"><div class="tulip-head" style="background: purple;"></div><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+  <div class="tulip" style="left: 80%; animation-delay: 3.5s;"><div class="tulip-head" style="background: deeppink;"></div><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div></div>
+  <div class="tulip" style="left: 90%; animation-delay: 6s;"><div class="tulip-head" style="background: coral;"></div><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div></div>
   <div class="card-container">
     <div class="card" data-emojis="😆😂🥴">
       <img src="images/silly.jpg" style="object-position: top;">
@@ -217,16 +284,18 @@
     <img src="images/eyelashes.jpg" class="float-img" />
   </div>
   <div class="floating-group" id="float-3">
-    <img src="images/flower1.png" class="float-img" />
-    <img src="images/flower2.png" class="float-img" />
+    <img src="images/disgust (2).jpg" class="float-img" />
+    <img src="images/disgust.jpg" class="float-img" />
   </div>
   <div class="floating-group" id="float-4">
-    <img src="images/sleep1.png" class="float-img" />
-    <img src="images/moon1.png" class="float-img" />
+    <img src="images/ganda (2).jpg" class="float-img" />
+    <img src="images/ganda.jpg" class="float-img" />
   </div>
   <div class="floating-group" id="float-5">
-    <img src="images/love1.png" class="float-img" />
-    <img src="images/hearts2.png" class="float-img" />
+    <img src="images/couple.jpg" class="float-img" />
+    <img src="images/couple (2).jpg" class="float-img" />
+    <img src="images/couple (3).jpg" class="float-img" />
+    <img src="images/couple (4).jpg" class="float-img" />
   </div>
 
   <div class="nav">
@@ -270,7 +339,6 @@ cards.forEach((card, index) => {
   });
 });
 
-// FIXED: This block is now outside of the card loop
 emojiButtons.forEach(btn => {
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
